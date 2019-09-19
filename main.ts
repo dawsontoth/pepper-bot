@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {execSync, spawn} from 'child_process';
 import * as schedule from 'node-schedule';
 import {Keys} from './keys';
