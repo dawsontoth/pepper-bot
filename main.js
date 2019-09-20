@@ -38,7 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var child_process_1 = require("child_process");
-var schedule = require("node-schedule");
+var node_schedule_1 = require("node-schedule");
+var timing_1 = require("./timing");
 var packageName = 'com.ifit.standalone';
 var device = '192.168.0.252:5555';
 var runOnce = false;
@@ -100,42 +101,31 @@ if (runOnce) {
     run().then(function () { return console.log('done!'); });
 }
 else {
-    var startsAt = 9;
-    var endsAt = 19;
-    var workWeek = new schedule.Range(1, 5);
-    var priorToBusinessHours = new schedule.RecurrenceRule();
-    priorToBusinessHours.dayOfWeek = workWeek;
-    priorToBusinessHours.hour = startsAt - 1;
-    priorToBusinessHours.minute = 59;
-    schedule.scheduleJob(priorToBusinessHours, function () {
+    var before = new node_schedule_1.Job('Turn On Screen', function () {
         connectShell();
         if (!screenIsOn()) {
             shell.stdin.write("input keyevent " + 26 /* POWER */ + "\n");
         }
         disconnectShell();
     });
-    var everyMinuteDuringBusinessHours = new schedule.RecurrenceRule();
-    everyMinuteDuringBusinessHours.dayOfWeek = workWeek;
-    everyMinuteDuringBusinessHours.hour = new schedule.Range(startsAt, endsAt);
     var running_1 = false;
-    schedule.scheduleJob(everyMinuteDuringBusinessHours, function () {
+    var during = new node_schedule_1.Job('Test Service', function () {
         if (!running_1) {
             running_1 = true;
             run()
                 .then(function () { return running_1 = false; })["catch"](function () { return running_1 = false; });
         }
     });
-    var afterBusinessHours = new schedule.RecurrenceRule();
-    afterBusinessHours.dayOfWeek = workWeek;
-    afterBusinessHours.hour = endsAt + 1;
-    afterBusinessHours.minute = 1;
-    schedule.scheduleJob(afterBusinessHours, function () {
+    var after = new node_schedule_1.Job('Turn Off Screen', function () {
         connectShell();
         if (screenIsOn()) {
             shell.stdin.write("input keyevent " + 26 /* POWER */ + "\n");
         }
         disconnectShell();
     });
+    node_schedule_1.rescheduleJob(before, timing_1.beforeWorkHours);
+    node_schedule_1.rescheduleJob(during, timing_1.duringWorkHours);
+    node_schedule_1.rescheduleJob(after, timing_1.afterWorkHours);
 }
 function run() {
     return __awaiter(this, void 0, void 0, function () {

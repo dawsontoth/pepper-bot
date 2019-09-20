@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import {execSync, spawn} from 'child_process';
-import * as schedule from 'node-schedule';
+import {Job, rescheduleJob} from 'node-schedule';
 import {Keys} from './keys';
 import {IStep} from './step';
+import {afterWorkHours, beforeWorkHours, duringWorkHours} from './timing';
 
 const packageName = 'com.ifit.standalone';
 const device = '192.168.0.252:5555';
@@ -55,15 +56,8 @@ const steps: IStep[] = [
 if (runOnce) {
   run().then(() => console.log('done!'));
 } else {
-  const startsAt = 9;
-  const endsAt = 19;
-  const workWeek = new schedule.Range(1, 5);
 
-  const priorToBusinessHours = new schedule.RecurrenceRule();
-  priorToBusinessHours.dayOfWeek = workWeek;
-  priorToBusinessHours.hour = startsAt - 1;
-  priorToBusinessHours.minute = 59;
-  schedule.scheduleJob(priorToBusinessHours, () => {
+  const before = new Job('Turn On Screen', () => {
     connectShell();
     if (!screenIsOn()) {
       shell.stdin.write(`input keyevent ${Keys.POWER}\n`);
@@ -71,11 +65,8 @@ if (runOnce) {
     disconnectShell();
   });
 
-  const everyMinuteDuringBusinessHours = new schedule.RecurrenceRule();
-  everyMinuteDuringBusinessHours.dayOfWeek = workWeek;
-  everyMinuteDuringBusinessHours.hour = new schedule.Range(startsAt, endsAt);
   let running = false;
-  schedule.scheduleJob(everyMinuteDuringBusinessHours, () => {
+  const during = new Job('Test Service', () => {
     if (!running) {
       running = true;
       run()
@@ -84,17 +75,17 @@ if (runOnce) {
     }
   });
 
-  const afterBusinessHours = new schedule.RecurrenceRule();
-  afterBusinessHours.dayOfWeek = workWeek;
-  afterBusinessHours.hour = endsAt + 1;
-  afterBusinessHours.minute = 1;
-  schedule.scheduleJob(afterBusinessHours, () => {
+  const after = new Job('Turn Off Screen', () => {
     connectShell();
     if (screenIsOn()) {
       shell.stdin.write(`input keyevent ${Keys.POWER}\n`);
     }
     disconnectShell();
   });
+
+  rescheduleJob(before, beforeWorkHours);
+  rescheduleJob(during, duringWorkHours);
+  rescheduleJob(after, afterWorkHours);
 }
 
 async function run() {
