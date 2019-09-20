@@ -1,5 +1,4 @@
 import {connectShell} from '../utils/connect-shell';
-import {disconnectShell} from '../utils/disconnect-shell';
 import {packageName} from './constants';
 import {shell} from './state';
 import {IStep} from './step';
@@ -35,9 +34,5 @@ export const steps: IStep[] = [
         + `monkey -p ${packageName} -c android.intent.category.LAUNCHER 1\n`,
       );
     },
-  },
-  {
-    title: `Disconnect ADB`,
-    run: async () => disconnectShell(),
   },
 ];

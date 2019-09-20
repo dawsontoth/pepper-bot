@@ -50,10 +50,12 @@ function ensureScreenIs(on) {
                     if (on !== screen_is_on_1.screenIsOn()) {
                         state_1.shell().stdin.write("input keyevent " + 26 /* POWER */ + "\n");
                     }
+                    if (!!on) return [3 /*break*/, 3];
                     return [4 /*yield*/, disconnect_shell_1.disconnectShell()];
                 case 2:
                     _a.sent();
-                    return [2 /*return*/];
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
             }
         });
     });

@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var connect_shell_1 = require("../utils/connect-shell");
-var disconnect_shell_1 = require("../utils/disconnect-shell");
 var constants_1 = require("./constants");
 var state_1 = require("./state");
 exports.steps = [
@@ -81,12 +80,6 @@ exports.steps = [
                 return [2 /*return*/];
             });
         }); },
-    },
-    {
-        title: "Disconnect ADB",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, disconnect_shell_1.disconnectShell()];
-        }); }); },
     },
 ];
 //# sourceMappingURL=steps.js.map

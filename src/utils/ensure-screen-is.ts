@@ -9,5 +9,7 @@ export async function ensureScreenIs(on: boolean) {
   if (on !== screenIsOn()) {
     shell().stdin.write(`input keyevent ${Keys.POWER}\n`);
   }
-  await disconnectShell();
+  if (!on) {
+    await disconnectShell();
+  }
 }
