@@ -36,50 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var connect_shell_1 = require("../methods/connect-shell");
-var constants_1 = require("./constants");
-var state_1 = require("./state");
-exports.steps = [
-    {
-        title: "Connect ADB",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, connect_shell_1.connectShell()];
-        }); }); },
-    },
-    {
-        title: 'Switching to Library',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1200 1070\n')];
-        }); }); },
-        waitAfterRun: 5,
-    },
-    {
-        title: 'Open a Trainer',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 10,
-    },
-    {
-        title: 'Open a Program',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 9,
-    },
-    {
-        title: "Restarting App",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                // const pid = String(execSync(`adb shell ps | grep ${packageName} | awk '{print $2}'`));
-                // if (!pid || isNaN(+pid)) {
-                //   throw new Error('pid not found! ' + pid);
-                // }
-                state_1.shell().stdin.write("am force-stop " + constants_1.packageName + "\n"
-                    + ("monkey -p " + constants_1.packageName + " -c android.intent.category.LAUNCHER 1\n"));
+var constants_1 = require("../models/constants");
+function delay(seconds) {
+    return __awaiter(this, void 0, void 0, function () {
+        var remaining;
+        return __generator(this, function (_a) {
+            if (!seconds) {
                 return [2 /*return*/];
-            });
-        }); },
-    },
-];
-//# sourceMappingURL=steps.js.map
+            }
+            remaining = seconds * 1000;
+            constants_1.logSteps && console.log("Waiting " + seconds + " seconds...");
+            return [2 /*return*/, new Promise(function (resolve) {
+                    var intervalID = setInterval(function () {
+                        remaining -= 100;
+                        if (remaining <= 0) {
+                            clearInterval(intervalID);
+                            resolve();
+                        }
+                    }, 100);
+                })];
+        });
+    });
+}
+exports.delay = delay;
+//# sourceMappingURL=delay.js.map

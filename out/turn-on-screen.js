@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var disconnect_shell_1 = require("./methods/disconnect-shell");
 var ensure_screen_is_1 = require("./methods/ensure-screen-is");
-var run_1 = require("./methods/run");
 ensure_screen_is_1.ensureScreenIs(true)
-    .then(function () { return run_1.run(); });
-//# sourceMappingURL=run-once.js.map
+    .then(disconnect_shell_1.disconnectShell);
+//# sourceMappingURL=turn-on-screen.js.map

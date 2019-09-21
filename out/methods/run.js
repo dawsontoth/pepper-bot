@@ -36,50 +36,62 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var connect_shell_1 = require("../methods/connect-shell");
-var constants_1 = require("./constants");
-var state_1 = require("./state");
-exports.steps = [
-    {
-        title: "Connect ADB",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, connect_shell_1.connectShell()];
-        }); }); },
-    },
-    {
-        title: 'Switching to Library',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1200 1070\n')];
-        }); }); },
-        waitAfterRun: 5,
-    },
-    {
-        title: 'Open a Trainer',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 10,
-    },
-    {
-        title: 'Open a Program',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 9,
-    },
-    {
-        title: "Restarting App",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                // const pid = String(execSync(`adb shell ps | grep ${packageName} | awk '{print $2}'`));
-                // if (!pid || isNaN(+pid)) {
-                //   throw new Error('pid not found! ' + pid);
-                // }
-                state_1.shell().stdin.write("am force-stop " + constants_1.packageName + "\n"
-                    + ("monkey -p " + constants_1.packageName + " -c android.intent.category.LAUNCHER 1\n"));
-                return [2 /*return*/];
-            });
-        }); },
-    },
-];
-//# sourceMappingURL=steps.js.map
+var constants_1 = require("../models/constants");
+var steps_1 = require("../models/steps");
+var delay_1 = require("./delay");
+var running = false;
+function run() {
+    return __awaiter(this, void 0, void 0, function () {
+        var i, step, err_1, err_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (running) {
+                        return [2 /*return*/];
+                    }
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 11, 12, 13]);
+                    running = true;
+                    constants_1.logSteps && process.stdout.write('\x1Bc');
+                    i = 0;
+                    _a.label = 2;
+                case 2:
+                    if (!(i < steps_1.steps.length)) return [3 /*break*/, 10];
+                    step = steps_1.steps[i];
+                    _a.label = 3;
+                case 3:
+                    _a.trys.push([3, 6, 7, 9]);
+                    constants_1.logSteps && console.log(step.title);
+                    if (!step.run) return [3 /*break*/, 5];
+                    return [4 /*yield*/, step.run()];
+                case 4:
+                    _a.sent();
+                    _a.label = 5;
+                case 5: return [3 /*break*/, 9];
+                case 6:
+                    err_1 = _a.sent();
+                    console.error(err_1);
+                    return [3 /*break*/, 10];
+                case 7: return [4 /*yield*/, delay_1.delay(step.waitAfterRun)];
+                case 8:
+                    _a.sent();
+                    return [7 /*endfinally*/];
+                case 9:
+                    i++;
+                    return [3 /*break*/, 2];
+                case 10: return [3 /*break*/, 13];
+                case 11:
+                    err_2 = _a.sent();
+                    console.error(err_2);
+                    return [3 /*break*/, 13];
+                case 12:
+                    running = false;
+                    return [7 /*endfinally*/];
+                case 13: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.run = run;
+//# sourceMappingURL=run.js.map

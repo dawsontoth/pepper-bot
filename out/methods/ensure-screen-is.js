@@ -36,50 +36,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var connect_shell_1 = require("../methods/connect-shell");
-var constants_1 = require("./constants");
-var state_1 = require("./state");
-exports.steps = [
-    {
-        title: "Connect ADB",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, connect_shell_1.connectShell()];
-        }); }); },
-    },
-    {
-        title: 'Switching to Library',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1200 1070\n')];
-        }); }); },
-        waitAfterRun: 5,
-    },
-    {
-        title: 'Open a Trainer',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 10,
-    },
-    {
-        title: 'Open a Program',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 9,
-    },
-    {
-        title: "Restarting App",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                // const pid = String(execSync(`adb shell ps | grep ${packageName} | awk '{print $2}'`));
-                // if (!pid || isNaN(+pid)) {
-                //   throw new Error('pid not found! ' + pid);
-                // }
-                state_1.shell().stdin.write("am force-stop " + constants_1.packageName + "\n"
-                    + ("monkey -p " + constants_1.packageName + " -c android.intent.category.LAUNCHER 1\n"));
-                return [2 /*return*/];
-            });
-        }); },
-    },
-];
-//# sourceMappingURL=steps.js.map
+var state_1 = require("../models/state");
+var connect_shell_1 = require("./connect-shell");
+var disconnect_shell_1 = require("./disconnect-shell");
+var screen_is_on_1 = require("./screen-is-on");
+function ensureScreenIs(on) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, connect_shell_1.connectShell()];
+                case 1:
+                    _a.sent();
+                    if (on !== screen_is_on_1.screenIsOn()) {
+                        state_1.shell().stdin.write("input keyevent " + 26 /* POWER */ + "\n");
+                    }
+                    if (!!on) return [3 /*break*/, 3];
+                    return [4 /*yield*/, disconnect_shell_1.disconnectShell()];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.ensureScreenIs = ensureScreenIs;
+//# sourceMappingURL=ensure-screen-is.js.map

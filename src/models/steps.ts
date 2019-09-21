@@ -1,4 +1,4 @@
-import {connectShell} from '../utils/connect-shell';
+import {connectShell} from '../methods/connect-shell';
 import {packageName} from './constants';
 import {shell} from './state';
 import {IStep} from './step';
