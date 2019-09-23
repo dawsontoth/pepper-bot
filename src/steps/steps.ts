@@ -1,7 +1,7 @@
 import {connectShell} from '../methods/connect-shell';
-import {packageName} from './constants';
-import {shell} from './state';
-import {IStep} from './step';
+import {packageName} from '../models/constants';
+import {shell} from '../models/state';
+import {IStep} from '../models/step';
 
 export const steps: IStep[] = [
   {
@@ -11,7 +11,7 @@ export const steps: IStep[] = [
   {
     title: 'Switching to Library',
     run: async () => shell().stdin.write('input tap 1200 1070\n'),
-    waitAfterRun: 5,
+    waitAfterRun: 6,
   },
   {
     title: 'Open a Trainer',
@@ -26,10 +26,6 @@ export const steps: IStep[] = [
   {
     title: `Restarting App`,
     run: async () => {
-      // const pid = String(execSync(`adb shell ps | grep ${packageName} | awk '{print $2}'`));
-      // if (!pid || isNaN(+pid)) {
-      //   throw new Error('pid not found! ' + pid);
-      // }
       shell().stdin.write(`am force-stop ${packageName}\n`
         + `monkey -p ${packageName} -c android.intent.category.LAUNCHER 1\n`,
       );

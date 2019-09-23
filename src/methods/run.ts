@@ -1,5 +1,5 @@
 import {logSteps} from '../models/constants';
-import {steps} from '../models/steps';
+import {steps} from '../steps/steps';
 import {delay} from './delay';
 
 let running = false;
