@@ -2,7 +2,7 @@
   "name": "monkey-console",
   "version": "1.0.0",
   "description": "",
-  "main": "main.ts",
+  "main": "out/run-on-schedule.js",
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
