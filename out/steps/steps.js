@@ -47,26 +47,31 @@ exports.steps = [
         }); }); },
     },
     {
-        title: 'Switching to Library',
+        title: 'Dismiss Leaderboard Beta',
+        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 20 80\n')];
+        }); }); },
+        waitAfterRun: 4,
+    },
+    {
+        title: 'Switch to Library',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/, state_1.shell().stdin.write('input tap 1200 1070\n')];
         }); }); },
-        waitAfterRun: 6,
+        waitAfterRun: 12,
     },
     {
         title: 'Open a Trainer',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
         }); }); },
-        waitAfterRun: 10,
+        waitAfterRun: 8,
     },
-    {
-        title: 'Open a Program',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
-        }); }); },
-        waitAfterRun: 9,
-    },
+    // {
+    //   title: 'Open a Program',
+    //   run: async () => shell().stdin.write('input tap 1218 850\n'),
+    //   waitAfterRun: 8,
+    // },
     {
         title: "Restarting App",
         run: function () { return __awaiter(void 0, void 0, void 0, function () {
