@@ -3,4 +3,5 @@ import {ensureScreenIs} from './methods/ensure-screen-is';
 import {run} from './methods/run';
 
 ensureScreenIs(true)
-  .then(() => run());
+  .then(() => run())
+  .then(() => process.exit(0));

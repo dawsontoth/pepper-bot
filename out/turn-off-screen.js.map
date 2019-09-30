@@ -1,1 +1,1 @@
-{"version":3,"file":"turn-off-screen.js","sourceRoot":"","sources":["../src/turn-off-screen.ts"],"names":[],"mappings":";;;AACA,+DAA0D;AAE1D,iCAAc,CAAC,KAAK,CAAC,CAAC,IAAI,EAAE,CAAC"}
+{"version":3,"file":"turn-off-screen.js","sourceRoot":"","sources":["../src/turn-off-screen.ts"],"names":[],"mappings":";;;AACA,+DAA0D;AAE1D,iCAAc,CAAC,KAAK,CAAC;KAClB,IAAI,CAAC,cAAM,OAAA,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC,EAAf,CAAe,CAAC,CAAC"}

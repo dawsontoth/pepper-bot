@@ -46,32 +46,39 @@ exports.steps = [
             return [2 /*return*/, connect_shell_1.connectShell()];
         }); }); },
     },
-    {
-        title: 'Dismiss Leaderboard Beta',
-        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 20 80\n')];
-        }); }); },
-        waitAfterRun: 4,
-    },
+    // {
+    //   title: 'Dismiss Leaderboard Beta',
+    //   run: async () => shell().stdin.write('input tap 20 80\n'),
+    //   waitAfterRun: 4,
+    // },
     {
         title: 'Switch to Library',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1200 1070\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 1190 1043\n')];
         }); }); },
-        waitAfterRun: 12,
+        waitAfterRun: 7,
+    },
+    {
+        title: 'Swipe Up',
+        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, state_1.shell().stdin.write('input swipe 1000 800 1000 300 1000\n')];
+        }); }); },
+        waitAfterRun: 2,
     },
     {
         title: 'Open a Trainer',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1218 850\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 370 650\n')];
         }); }); },
         waitAfterRun: 8,
     },
-    // {
-    //   title: 'Open a Program',
-    //   run: async () => shell().stdin.write('input tap 1218 850\n'),
-    //   waitAfterRun: 8,
-    // },
+    {
+        title: 'Open a Program',
+        run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 260 800\n')];
+        }); }); },
+        waitAfterRun: 8,
+    },
     {
         title: "Restarting App",
         run: function () { return __awaiter(void 0, void 0, void 0, function () {
