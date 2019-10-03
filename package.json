@@ -8,6 +8,7 @@
     "build-watch": "tsc -w",
     "run-on-schedule": "ts-node src/run-on-schedule.ts",
     "run-once": "ts-node src/run-once.ts",
+    "run-constantly": "ts-node src/run-constantly.ts",
     "turn-on-screen": "ts-node src/turn-on-screen.ts",
     "turn-off-screen": "ts-node src/turn-off-screen.ts"
   },

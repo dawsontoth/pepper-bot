@@ -56,7 +56,7 @@ exports.steps = [
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/, state_1.shell().stdin.write('input tap 1190 1043\n')];
         }); }); },
-        waitAfterRun: 7,
+        waitAfterRun: 10,
     },
     {
         title: 'Swipe Up',
@@ -68,16 +68,16 @@ exports.steps = [
     {
         title: 'Open a Trainer',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 370 650\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 370 670\n')];
         }); }); },
-        waitAfterRun: 8,
+        waitAfterRun: 9,
     },
     {
         title: 'Open a Program',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 260 800\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 250 950\n')];
         }); }); },
-        waitAfterRun: 8,
+        waitAfterRun: 6,
     },
     {
         title: "Restarting App",

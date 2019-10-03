@@ -18,4 +18,5 @@ exports.afterWorkHours = {
     hour: endsAt + 1,
     minute: 1,
 };
+exports.everyMinute = {};
 //# sourceMappingURL=timing.js.map

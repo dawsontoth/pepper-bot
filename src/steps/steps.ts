@@ -16,7 +16,7 @@ export const steps: IStep[] = [
   {
     title: 'Switch to Library',
     run: async () => shell().stdin.write('input tap 1190 1043\n'),
-    waitAfterRun: 7,
+    waitAfterRun: 10,
   },
   {
     title: 'Swipe Up',
@@ -25,13 +25,13 @@ export const steps: IStep[] = [
   },
   {
     title: 'Open a Trainer',
-    run: async () => shell().stdin.write('input tap 370 650\n'),
-    waitAfterRun: 8,
+    run: async () => shell().stdin.write('input tap 370 670\n'),
+    waitAfterRun: 9,
   },
   {
     title: 'Open a Program',
-    run: async () => shell().stdin.write('input tap 260 800\n'),
-    waitAfterRun: 8,
+    run: async () => shell().stdin.write('input tap 250 950\n'),
+    waitAfterRun: 6,
   },
   {
     title: `Restarting App`,

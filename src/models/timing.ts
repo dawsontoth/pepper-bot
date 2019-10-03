@@ -20,3 +20,5 @@ export const afterWorkHours = {
   hour: endsAt + 1,
   minute: 1,
 };
+
+export const everyMinute = {};
