@@ -61,9 +61,9 @@ exports.steps = [
     {
         title: 'Swipe Up',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input swipe 1000 800 1000 300 1000\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input swipe 1000 800 1000 300 2000\n')];
         }); }); },
-        waitAfterRun: 2,
+        waitAfterRun: 1,
     },
     {
         title: 'Open a Trainer',

@@ -20,8 +20,8 @@ export const steps: IStep[] = [
   },
   {
     title: 'Swipe Up',
-    run: async () => shell().stdin.write('input swipe 1000 800 1000 300 1000\n'),
-    waitAfterRun: 2,
+    run: async () => shell().stdin.write('input swipe 1000 800 1000 300 2000\n'),
+    waitAfterRun: 1,
   },
   {
     title: 'Open a Trainer',
