@@ -8,11 +8,6 @@ export const steps: IStep[] = [
     title: `Connect ADB`,
     run: async () => connectShell(),
   },
-  // {
-  //   title: 'Dismiss Leaderboard Beta',
-  //   run: async () => shell().stdin.write('input tap 20 80\n'),
-  //   waitAfterRun: 4,
-  // },
   {
     title: 'Switch to Library',
     run: async () => shell().stdin.write('input tap 1190 1043\n'),
@@ -25,7 +20,7 @@ export const steps: IStep[] = [
   },
   {
     title: 'Open a Trainer',
-    run: async () => shell().stdin.write('input tap 370 670\n'),
+    run: async () => shell().stdin.write('input tap 370 705\n'),
     waitAfterRun: 9,
   },
   {
