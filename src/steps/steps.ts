@@ -10,7 +10,7 @@ export const steps: IStep[] = [
   },
   {
     title: 'Switch to Library',
-    run: async () => shell().stdin.write('input tap 1190 1043\n'),
+    run: async () => shell().stdin.write('input tap 1120 1043\n'),
     waitAfterRun: 10,
   },
   {

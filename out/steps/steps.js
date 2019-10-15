@@ -49,7 +49,7 @@ exports.steps = [
     {
         title: 'Switch to Library',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1190 1043\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 1120 1043\n')];
         }); }); },
         waitAfterRun: 10,
     },
