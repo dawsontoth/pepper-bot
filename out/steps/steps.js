@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var connect_shell_1 = require("../methods/connect-shell");
-var constants_1 = require("../models/constants");
 var state_1 = require("../models/state");
 exports.steps = [
     {
@@ -47,42 +46,31 @@ exports.steps = [
         }); }); },
     },
     {
-        title: 'Switch to Library',
+        title: 'Switch to Browse',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 1120 1043\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 1100 1050\n')];
         }); }); },
-        waitAfterRun: 10,
+        waitAfterRun: 15,
     },
     {
-        title: 'Swipe Up',
+        title: 'Switch to Home',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input swipe 1000 800 1000 300 2000\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 695 1050\n')];
         }); }); },
-        waitAfterRun: 1,
+        waitAfterRun: 15,
     },
     {
-        title: 'Open a Trainer',
+        title: 'Switch to Browse',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 370 705\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 1100 1050\n')];
         }); }); },
-        waitAfterRun: 9,
+        waitAfterRun: 15,
     },
     {
-        title: 'Open a Program',
+        title: 'Switch to Home',
         run: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, state_1.shell().stdin.write('input tap 250 950\n')];
+            return [2 /*return*/, state_1.shell().stdin.write('input tap 695 1050\n')];
         }); }); },
-        waitAfterRun: 6,
-    },
-    {
-        title: "Restarting App",
-        run: function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                state_1.shell().stdin.write("am force-stop " + constants_1.packageName + "\n"
-                    + ("monkey -p " + constants_1.packageName + " -c android.intent.category.LAUNCHER 1\n"));
-                return [2 /*return*/];
-            });
-        }); },
     },
 ];
 //# sourceMappingURL=steps.js.map
